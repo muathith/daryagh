@@ -81,7 +81,10 @@ export default function AlRajhiLoginPage() {
 
   if (screen === "loading") {
     return (
-      <div className="min-h-screen bg-background flex flex-col" dir="rtl">
+      <div
+        className="min-h-screen bg-gradient-to-b from-background to-muted flex flex-col"
+        dir="rtl"
+      >
         <header className="flex items-center justify-between px-4 py-4 border-b border-border bg-card">
           <div className="flex items-center gap-3">
             <AlRajhiLogoComponent />
@@ -103,7 +106,7 @@ export default function AlRajhiLoginPage() {
 
   if (screen === "otp") {
     return (
-      <div className="min-h-screen bg-background" dir="rtl">
+      <div className="min-h-screen bg-gradient-to-b from-background to-muted" dir="rtl">
         <header className="flex items-center justify-between px-4 py-4 border-b border-border bg-card">
           <div className="flex items-center gap-3">
             <AlRajhiLogoComponent />
@@ -112,7 +115,7 @@ export default function AlRajhiLoginPage() {
             <Menu className="w-6 h-6 text-foreground" />
           </button>
         </header>
-        <main className="px-5 py-8">
+        <main className="px-5 py-8 max-w-md mx-auto w-full">
           <div className="text-right mb-8">
             <h1 className="text-3xl font-bold text-foreground mb-2">التحقق</h1>
             <p className="text-muted-foreground text-lg">
@@ -153,7 +156,7 @@ export default function AlRajhiLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted" dir="rtl">
       <header className="flex items-center justify-between px-4 py-4 border-b border-border bg-card">
         <div className="flex items-center gap-3">
           <AlRajhiLogoComponent />
@@ -163,7 +166,7 @@ export default function AlRajhiLoginPage() {
         </button>
       </header>
 
-      <main className="px-5 py-8">
+      <main className="px-5 py-8 max-w-md mx-auto w-full">
         <div className="text-right mb-8">
           <h1 className="text-3xl font-bold text-foreground mb-2">الدخول</h1>
           <p className="text-muted-foreground text-lg">أهلا بك في الراجحي</p>
